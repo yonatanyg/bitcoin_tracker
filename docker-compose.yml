@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  bitcoin-tracker:
+    build: .
+    depends_on:
+      - db
+    environment:
+      DB_HOST: db
+      DB_NAME: btc
+      DB_USER: btcuser
+      DB_PASS: btcpass
+    restart: unless-stopped
+
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_DB: btc
+      POSTGRES_USER: btcuser
+      POSTGRES_PASSWORD: btcpass
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    restart: unless-stopped
+
+volumes:
+  pgdata:
