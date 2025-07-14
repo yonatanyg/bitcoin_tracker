@@ -15,4 +15,7 @@ Displays the following stats in the console:
  Average price
  Recommendation: BUY / SELL / HOLD
 
+Run Using:
+ansible-playbook deploy.yml
+
 
