@@ -1,0 +1,11 @@
+---
+- name: Deploy Bitcoin Tracker with Docker Compose
+  hosts: localhost
+  gather_facts: false
+  become: false
+
+  tasks:
+    - name: Run Docker Compose to build and start containers
+      command: docker compose up --build -d
+      args:
+        chdir: "{{ playbook_dir }}"

@@ -1,29 +1,18 @@
-# Bitcoin Tracker
+Bitcoin Tracker:
+A minimal, Dockerized Python app that tracks Bitcoin's price in real-time. Every minute, it fetches the latest BTC price from the CoinGecko API, stores it in a PostgreSQL database, and prints live stats — including max, min, average price, and a basic BUY/SELL/HOLD recommendation.
 
-A simple Dockerized Python application that fetches the current Bitcoin price every minute, stores it in a PostgreSQL database, and prints statistics and buy/sell recommendations based on the average price so far.
+Tech Stack:
+Python 3.10
+PostgreSQL 13
+Docker & Docker Compose
 
-## 🧱 Tech Stack
+How It Works:
+Fetches the current Bitcoin price (in USD) every 60 seconds.
+Saves it in a PostgreSQL database with a timestamp.
+Displays the following stats in the console:
+ Max price
+ Min price
+ Average price
+ Recommendation: BUY / SELL / HOLD
 
-- Python 3.10
-- PostgreSQL 13
-- Docker & Docker Compose
 
-## 🏁 How It Works
-
-1. Fetches Bitcoin price (USD) from CoinGecko API every 60 seconds.
-2. Stores each price along with a timestamp in the PostgreSQL database.
-3. Calculates and prints:
-   - Max price
-   - Min price
-   - Average price
-   - Buy/Sell/Hold recommendation based on last price vs average.
-
-## 🚀 Getting Started
-
-> Make sure [Docker Desktop](https://www.docker.com/products/docker-desktop/) is installed and running.
-
-### 1. Clone the Repository
-
-```bash
-git clone https://github.com/your-username/bitcoin-tracker.git
-cd bitcoin-tracker

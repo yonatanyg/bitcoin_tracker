@@ -3,6 +3,7 @@ from datetime import datetime
 import os
 
 def connect():
+    """Connect to the PostgreSQL database using environment variables or defaults."""
     return psycopg2.connect(
         host=os.getenv("DB_HOST", "localhost"),
         database=os.getenv("DB_NAME", "btc"),
@@ -11,7 +12,7 @@ def connect():
     )
 
 def init_db():
-    # Create the btc_prices table if not exists
+    """Make sure the btc_prices table exists before we start."""
     with connect() as conn:
         with conn.cursor() as cur:
             cur.execute("""
@@ -24,6 +25,7 @@ def init_db():
             conn.commit()
 
 def insert_price(price):
+    """Add a new price entry with the current UTC time."""
     with connect() as conn:
         with conn.cursor() as cur:
             cur.execute(
@@ -33,6 +35,7 @@ def insert_price(price):
             conn.commit()
 
 def get_stats():
+    """Grab the max, min, and average price so far from the database."""
     with connect() as conn:
         with conn.cursor() as cur:
             cur.execute("SELECT MAX(price), MIN(price), AVG(price) FROM btc_prices;")
